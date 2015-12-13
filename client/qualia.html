@@ -1,0 +1,46 @@
+<head>
+  <title>Rock, Paper, Scissors</title>
+</head>
+
+<template name="mainLayout">
+  <header><div class="center"><h1>Rock, Paper, Scissors!</h1></div></header>
+  <main>
+      <div class="center">
+        {{>Template.dynamic template=content}}
+      </div>
+  </main>
+  <footer><div class="center"><small> Created by Naimah Mumin</small></div></footer>
+</template>
+
+<template name="main"> 
+  <p>Lets play! Are you...?</p>
+    <a href="/player1" class="button">Player 1</a>
+    <a href="/player2" class="button">Player 2</a>
+</template>
+
+<template name="game"> 
+  {{> choice}}
+</template>
+
+<template name="choice">
+  <p>{{#if hand}}Choose <strong>{{hand}}</strong>? <button id="yes" class="button" value="yes">Yes</button>{{else}}Your move:{{/if }}</p>
+    <button id="rock" class="button" value="rock">Rock</button>
+    <button id="paper" class="button" value="paper">Paper</button>
+    <button id="scissors" class="button" value="scissors">Scissors</button>
+</template>
+
+<template name="gameOver"> 
+  {{#if winner}}
+    <h3>The winner of this game is</h3><h2>{{winner}}</h2>
+    <h4>Player 1 played {{player1_hand}}</h4>
+    <h4>Player 2 played {{player2_hand}}</h4>
+    <br /><br />
+    <p><a class="button" id="play_again" href="/">Play again?</a></p>
+  {{else}}
+    {{> waitingForOpponent}}
+  {{/if }}
+</template>
+
+<template name="waitingForOpponent"> 
+  <h3>Waiting for {{opponent}}'s move...</h3>
+</template>
